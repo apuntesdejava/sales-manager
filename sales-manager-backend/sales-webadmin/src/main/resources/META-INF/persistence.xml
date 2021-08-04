@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.2" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd">
+  <persistence-unit name="salesPU" transaction-type="JTA">
+    <jta-data-source>jdbc/sales</jta-data-source>
+    <properties>
+      <property name="javax.persistence.schema-generation.database.action" value="create"/>
+      <property name="eclipselink.logging.level" value="ALL"/>
+    </properties>
+    <class>com.apuntesdejava.sales.model.Category</class>
+    <class>com.apuntesdejava.sales.model.MeasurementConvert</class>
+    <class>com.apuntesdejava.sales.model.MeasurementUnit</class>
+    <class>com.apuntesdejava.sales.model.Product</class>
+    <class>com.apuntesdejava.sales.model.Stock</class>
+    <class>com.apuntesdejava.sales.model.Storehouse</class>
+    <class>com.apuntesdejava.sales.model.CustomerPerson</class>
+    <class>com.apuntesdejava.sales.model.ProviderPerson</class>
+    <class>com.apuntesdejava.sales.model.TypePerson</class>
+    <exclude-unlisted-classes>false</exclude-unlisted-classes>
+  </persistence-unit>
+</persistence>

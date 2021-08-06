@@ -6,16 +6,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
-import lombok.Getter;
-import lombok.Setter;
 
 /**
  *
  * @author Diego Silva <diego.silva at apuntesdejava.com>
  */
 @Entity
-@Getter
-@Setter
 public class Category implements Serializable {
 
     @Id
@@ -25,6 +21,22 @@ public class Category implements Serializable {
 
     @Column(length = 100)
     private String name;
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     @Override
     public int hashCode() {

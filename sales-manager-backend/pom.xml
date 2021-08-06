@@ -8,6 +8,7 @@
     <modules>
         <module>sales-entities</module>
         <module>sales-webadmin</module>
+        <module>sales-services</module>
     </modules>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

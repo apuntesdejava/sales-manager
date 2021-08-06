@@ -9,15 +9,11 @@ import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import lombok.Getter;
-import lombok.Setter;
 
 /**
  *
  * @author Diego Silva <diego.silva at apuntesdejava.com>
  */
-@Getter
-@Setter
 @Entity
 public class Stock implements Serializable {
 
@@ -40,6 +36,54 @@ public class Stock implements Serializable {
 
     @Column(name = "last_update")
     private LocalDateTime lastUpdate;
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+
+    public Storehouse getStorehouse() {
+        return storehouse;
+    }
+
+    public void setStorehouse(Storehouse storehouse) {
+        this.storehouse = storehouse;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public double getCount() {
+        return count;
+    }
+
+    public void setCount(double count) {
+        this.count = count;
+    }
+
+    public LocalDateTime getLastUpdate() {
+        return lastUpdate;
+    }
+
+    public void setLastUpdate(LocalDateTime lastUpdate) {
+        this.lastUpdate = lastUpdate;
+    }
 
     @Override
     public int hashCode() {

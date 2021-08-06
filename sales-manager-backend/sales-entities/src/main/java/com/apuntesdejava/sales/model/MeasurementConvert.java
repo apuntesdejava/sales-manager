@@ -8,8 +8,6 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import lombok.Getter;
-import lombok.Setter;
 
 /**
  *
@@ -17,8 +15,6 @@ import lombok.Setter;
  */
 @Entity
 @Table(name = "measurement_convert")
-@Getter
-@Setter
 public class MeasurementConvert implements Serializable {
 
     @EmbeddedId
@@ -44,6 +40,38 @@ public class MeasurementConvert implements Serializable {
 
     @Column(name = "convert_value")
     private double convert;
+
+    public MeasurementConvertId getId() {
+        return id;
+    }
+
+    public void setId(MeasurementConvertId id) {
+        this.id = id;
+    }
+
+    public MeasurementUnit getSource() {
+        return source;
+    }
+
+    public void setSource(MeasurementUnit source) {
+        this.source = source;
+    }
+
+    public MeasurementUnit getTarget() {
+        return target;
+    }
+
+    public void setTarget(MeasurementUnit target) {
+        this.target = target;
+    }
+
+    public double getConvert() {
+        return convert;
+    }
+
+    public void setConvert(double convert) {
+        this.convert = convert;
+    }
 
     @Override
     public int hashCode() {

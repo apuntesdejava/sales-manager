@@ -8,16 +8,12 @@ import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import lombok.Getter;
-import lombok.Setter;
 
 /**
  *
  * @author Diego Silva <diego.silva at apuntesdejava.com>
  */
 @Entity
-@Getter
-@Setter
 public class Product implements Serializable {
 
     @Id
@@ -38,6 +34,46 @@ public class Product implements Serializable {
     @ManyToOne
     @JoinColumn(name = "measurement_id")
     private MeasurementUnit measurementUnit;
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+    public MeasurementUnit getMeasurementUnit() {
+        return measurementUnit;
+    }
+
+    public void setMeasurementUnit(MeasurementUnit measurementUnit) {
+        this.measurementUnit = measurementUnit;
+    }
 
     @Override
     public int hashCode() {

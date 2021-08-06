@@ -18,18 +18,12 @@ package com.apuntesdejava.sales.model;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
 /**
  *
  * @author Diego Silva <diego.silva at apuntesdejava.com>
  */
 @Embeddable
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
 public class PersonPhone implements Serializable {
 
     @Column(name = "phone_type", length = 15)
@@ -37,4 +31,28 @@ public class PersonPhone implements Serializable {
 
     @Column(name = "phone_number", length = 20)
     private String phoneNumber;
+
+    public PersonPhone() {
+    }
+
+    public PersonPhone(String phoneType, String phoneNumber) {
+        this.phoneType = phoneType;
+        this.phoneNumber = phoneNumber;
+    }
+
+    public String getPhoneType() {
+        return phoneType;
+    }
+
+    public void setPhoneType(String phoneType) {
+        this.phoneType = phoneType;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
 }

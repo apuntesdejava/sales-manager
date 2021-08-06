@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE resources PUBLIC "-//Payara.fish//DTD Payara Server 4 Resource Definitions//EN" "https://raw.githubusercontent.com/payara/Payara-Community-Documentation/master/docs/modules/ROOT/pages/schemas/payara-resources_1_6.dtd">
+<resources>
+    <jdbc-connection-pool log-jdbc-calls="true" ping="true" datasource-classname="com.mysql.cj.jdbc.MysqlDataSource" name="salesPool" res-type="javax.sql.DataSource">
+        <property name="AllowPublicKeyRetrieval" value="true"></property>
+        <property name="DatabaseName" value="sales"></property>
+        <property name="ServerTimezone" value="America/Lima"></property>
+        <property name="Password" value="sales"></property>
+        <property name="RequireSSL" value="false"></property>
+        <property name="ServerName" value="localhost"></property>
+        <property name="User" value="sales"></property>
+        <property name="useSSL" value="false"></property>
+        <property name="fish.payara.log-jdbc-calls" value="true"></property>
+    </jdbc-connection-pool>
+    <jdbc-resource pool-name="salesPool" jndi-name="jdbc/sales"></jdbc-resource>
+</resources>

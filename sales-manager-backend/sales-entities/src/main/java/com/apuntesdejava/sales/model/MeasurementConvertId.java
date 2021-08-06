@@ -16,22 +16,15 @@
 package com.apuntesdejava.sales.model;
 
 import java.io.Serializable;
+import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
 
 /**
  *
  * @author Diego Silva <diego.silva at apuntesdejava.com>
  */
 @Embeddable
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
-@EqualsAndHashCode
 public class MeasurementConvertId implements Serializable {
     
     @Column(name = "unit_source",length = 5)
@@ -39,4 +32,54 @@ public class MeasurementConvertId implements Serializable {
     
     @Column(name = "unit_target",length = 5)
     private String measurementUnitTarget;
+
+    public MeasurementConvertId() {
+    }
+
+    public MeasurementConvertId(String measurementUnitSource, String measurementUnitTarget) {
+        this.measurementUnitSource = measurementUnitSource;
+        this.measurementUnitTarget = measurementUnitTarget;
+    }
+
+    public String getMeasurementUnitSource() {
+        return measurementUnitSource;
+    }
+
+    public void setMeasurementUnitSource(String measurementUnitSource) {
+        this.measurementUnitSource = measurementUnitSource;
+    }
+
+    public String getMeasurementUnitTarget() {
+        return measurementUnitTarget;
+    }
+
+    public void setMeasurementUnitTarget(String measurementUnitTarget) {
+        this.measurementUnitTarget = measurementUnitTarget;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 17 * hash + Objects.hashCode(this.measurementUnitSource);
+        hash = 17 * hash + Objects.hashCode(this.measurementUnitTarget);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final MeasurementConvertId other = (MeasurementConvertId) obj;
+        if (!Objects.equals(this.measurementUnitSource, other.measurementUnitSource)) {
+            return false;
+        }
+        return Objects.equals(this.measurementUnitTarget, other.measurementUnitTarget);
+    }
 }

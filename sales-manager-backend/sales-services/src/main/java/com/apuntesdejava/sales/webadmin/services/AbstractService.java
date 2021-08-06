@@ -13,12 +13,26 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.apuntesdejava.sales.webadmin;
+package com.apuntesdejava.sales.webadmin.services;
 
-import javax.ws.rs.ApplicationPath;
-import javax.ws.rs.core.Application;
+import com.apuntesdejava.sales.webadmin.repositories.AbstractRepository;
+import java.util.List;
 
-@ApplicationPath("resources")
-public class JAXRSConfiguration extends Application {
+/**
+ *
+ * @author Diego Silva <diego.silva at apuntesdejava.com>
+ * @param <K> Key class
+ * @param <E> Entity class
+ */
+public abstract class AbstractService<K, E> {
 
+    protected abstract AbstractRepository<K, E> getRepository();
+
+    public List<E> listAll() {
+        return getRepository().listAll();
+    }
+
+    public E create(E model) {
+        return getRepository().persist(model);
+    }
 }

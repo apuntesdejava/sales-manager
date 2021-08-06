@@ -13,12 +13,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.apuntesdejava.sales.webadmin;
+package com.apuntesdejava.sales.webadmin.repositories;
 
-import javax.ws.rs.ApplicationPath;
-import javax.ws.rs.core.Application;
+import javax.ejb.Singleton;
+import javax.enterprise.inject.Produces;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
-@ApplicationPath("resources")
-public class JAXRSConfiguration extends Application {
+/**
+ *
+ * @author Diego Silva <diego.silva at apuntesdejava.com>
+ */
+@Singleton
+public class JpaProvider {
+
+    @Produces
+    @PersistenceContext(unitName = "salesPU")
+    private static EntityManager em;
 
 }

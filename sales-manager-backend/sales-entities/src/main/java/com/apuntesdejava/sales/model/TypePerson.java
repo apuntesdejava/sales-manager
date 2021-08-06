@@ -21,10 +21,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 /**
  *
@@ -32,10 +28,6 @@ import lombok.Setter;
  */
 @Entity
 @Table(name = "type_person")
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
 public class TypePerson implements Serializable {
 
     @Id
@@ -44,6 +36,30 @@ public class TypePerson implements Serializable {
 
     @Column(length = 20)
     private String name;
+
+    public TypePerson() {
+    }
+
+    public TypePerson(String id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     @Override
     public int hashCode() {

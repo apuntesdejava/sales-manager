@@ -13,12 +13,29 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.apuntesdejava.sales.webadmin;
+package com.apuntesdejava.sales.webadmin.repositories;
 
-import javax.ws.rs.ApplicationPath;
-import javax.ws.rs.core.Application;
+import com.apuntesdejava.sales.model.Category;
+import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
+import javax.persistence.EntityManager;
 
-@ApplicationPath("resources")
-public class JAXRSConfiguration extends Application {
+/**
+ *
+ * @author Diego Silva <diego.silva at apuntesdejava.com>
+ */
+@ApplicationScoped
+public class CategoryRepository extends AbstractRepository<Long, Category> {
 
+    @Inject
+    private EntityManager em;
+
+    public CategoryRepository() {
+        super(Category.class);
+    }
+
+    @Override
+    protected EntityManager getEntityManager() {
+        return em;
+    }
 }

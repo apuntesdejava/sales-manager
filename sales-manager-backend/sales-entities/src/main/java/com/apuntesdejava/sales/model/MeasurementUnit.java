@@ -6,16 +6,12 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import lombok.Getter;
-import lombok.Setter;
 
 /**
  *
  * @author Diego Silva <diego.silva at apuntesdejava.com>
  */
 @Entity
-@Getter
-@Setter
 @Table(name = "measurement_unit")
 public class MeasurementUnit implements Serializable {
 
@@ -25,6 +21,22 @@ public class MeasurementUnit implements Serializable {
 
     @Column(length = 20)
     private String name;
+
+    public String getMeasurementId() {
+        return measurementId;
+    }
+
+    public void setMeasurementId(String measurementId) {
+        this.measurementId = measurementId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     @Override
     public int hashCode() {

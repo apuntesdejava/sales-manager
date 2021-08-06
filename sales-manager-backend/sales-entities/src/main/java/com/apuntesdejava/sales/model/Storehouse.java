@@ -6,15 +6,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
-import lombok.Getter;
-import lombok.Setter;
 
 /**
  *
  * @author Diego Silva <diego.silva at apuntesdejava.com>
  */
-@Getter
-@Setter
 @Entity
 public class Storehouse implements Serializable {
 
@@ -31,6 +27,46 @@ public class Storehouse implements Serializable {
     private double longitude;
 
     private String address;
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
+
+    public double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
 
     @Override
     public int hashCode() {

@@ -28,8 +28,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.MapKeyColumn;
 import javax.persistence.MappedSuperclass;
-import lombok.Getter;
-import lombok.Setter;
 
 /**
  *
@@ -37,8 +35,6 @@ import lombok.Setter;
  */
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @MappedSuperclass
-@Setter
-@Getter
 public abstract class Person implements Serializable {
 
     @EmbeddedId
@@ -60,6 +56,46 @@ public abstract class Person implements Serializable {
     )
     @MapKeyColumn(name = "address_type", insertable = false, updatable = false, length = 20)
     private Map<String, PersonAddress> addresses;
+
+    public PersonId getId() {
+        return id;
+    }
+
+    public void setId(PersonId id) {
+        this.id = id;
+    }
+
+    public TypePerson getTypePerson() {
+        return typePerson;
+    }
+
+    public void setTypePerson(TypePerson typePerson) {
+        this.typePerson = typePerson;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public Map<String, PersonAddress> getAddresses() {
+        return addresses;
+    }
+
+    public void setAddresses(Map<String, PersonAddress> addresses) {
+        this.addresses = addresses;
+    }
 
     @Override
     public int hashCode() {

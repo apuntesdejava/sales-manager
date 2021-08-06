@@ -18,18 +18,12 @@ package com.apuntesdejava.sales.model;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
 /**
  *
  * @author Diego Silva <diego.silva at apuntesdejava.com>
  */
 @Embeddable
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
 public class PersonAddress implements Serializable {
 
     @Column(name = "address_type", length = 15)
@@ -40,5 +34,38 @@ public class PersonAddress implements Serializable {
 
     @Column(name = "city")
     private String city;
+
+    public PersonAddress() {
+    }
+
+    public PersonAddress(String addressType, String streetAddress, String city) {
+        this.addressType = addressType;
+        this.streetAddress = streetAddress;
+        this.city = city;
+    }
+
+    public String getAddressType() {
+        return addressType;
+    }
+
+    public void setAddressType(String addressType) {
+        this.addressType = addressType;
+    }
+
+    public String getStreetAddress() {
+        return streetAddress;
+    }
+
+    public void setStreetAddress(String streetAddress) {
+        this.streetAddress = streetAddress;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
 
 }

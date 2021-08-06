@@ -16,22 +16,15 @@
 package com.apuntesdejava.sales.model;
 
 import java.io.Serializable;
+import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
 
 /**
  *
  * @author Diego Silva <diego.silva at apuntesdejava.com>
  */
 @Embeddable
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
-@EqualsAndHashCode
 public class PersonId implements Serializable {
 
     @Column(name = "type_person", length = 5)
@@ -39,4 +32,55 @@ public class PersonId implements Serializable {
 
     @Column(length = 30, name = "document_number")
     private String documentNumber;
+
+    public PersonId() {
+    }
+
+    public PersonId(String typePersonId, String documentNumber) {
+        this.typePersonId = typePersonId;
+        this.documentNumber = documentNumber;
+    }
+
+    public String getTypePersonId() {
+        return typePersonId;
+    }
+
+    public void setTypePersonId(String typePersonId) {
+        this.typePersonId = typePersonId;
+    }
+
+    public String getDocumentNumber() {
+        return documentNumber;
+    }
+
+    public void setDocumentNumber(String documentNumber) {
+        this.documentNumber = documentNumber;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 41 * hash + Objects.hashCode(this.typePersonId);
+        hash = 41 * hash + Objects.hashCode(this.documentNumber);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final PersonId other = (PersonId) obj;
+        if (!Objects.equals(this.typePersonId, other.typePersonId)) {
+            return false;
+        }
+        return Objects.equals(this.documentNumber, other.documentNumber);
+    }
+    
 }

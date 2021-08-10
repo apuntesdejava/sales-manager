@@ -18,3 +18,5 @@
 **/bin
 **/.project
 **/*.NavData
+**/payara5
+*.zip

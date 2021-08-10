@@ -57,6 +57,13 @@ public abstract class Person implements Serializable {
     @MapKeyColumn(name = "address_type", insertable = false, updatable = false, length = 20)
     private Map<String, PersonAddress> addresses;
 
+    @ElementCollection
+    @CollectionTable(
+            name = "person_phone"
+    )
+    @MapKeyColumn(name = "phone_type", insertable = false, updatable = false, length = 20)
+    private Map<String, PersonPhone> phones;
+
     public PersonId getId() {
         return id;
     }
@@ -95,6 +102,14 @@ public abstract class Person implements Serializable {
 
     public void setAddresses(Map<String, PersonAddress> addresses) {
         this.addresses = addresses;
+    }
+
+    public Map<String, PersonPhone> getPhones() {
+        return phones;
+    }
+
+    public void setPhones(Map<String, PersonPhone> phones) {
+        this.phones = phones;
     }
 
     @Override

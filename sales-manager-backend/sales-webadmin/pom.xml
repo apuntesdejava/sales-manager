@@ -19,14 +19,15 @@
         <failOnMissingWebXml>false</failOnMissingWebXml>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-   
+        
     </properties>
     <dependencies>
         <dependency>
-            <groupId>com.apuntesdejava.sales.entities</groupId>
-            <artifactId>sales-entities</artifactId>
+            <groupId>com.apuntesdejava.sales</groupId>
+            <artifactId>sales-services</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
+        
         <dependency>
             <groupId>jakarta.platform</groupId>
             <artifactId>jakarta.jakartaee-api</artifactId>
@@ -41,6 +42,13 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
+            <groupId>org.primefaces</groupId>
+            <artifactId>primefaces</artifactId>
+            <version>10.0.0</version>
+        </dependency>
+        
+        
+        <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
             <version>${junit-jupiter.version}</version>
@@ -52,33 +60,13 @@
             <version>${mockito-core.version}</version>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>1.18.20</version>
-        </dependency>
-        <dependency>
-            <groupId>org.primefaces</groupId>
-            <artifactId>primefaces</artifactId>
-            <version>10.0.0</version>
-        </dependency>
-        <dependency>
-            <groupId>org.eclipse.persistence</groupId>
-            <artifactId>org.eclipse.persistence.jpa.modelgen.processor</artifactId>
-            <version>3.0.0</version> 
-            <scope>provided</scope>
-        </dependency>
+
         
         <dependency>
             <groupId>org.microshed</groupId>
             <artifactId>microshed-testing-payara-micro</artifactId>
             <version>0.9.1</version>
             <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.apuntesdejava.sales</groupId>
-            <artifactId>sales-services</artifactId>
-            <version>1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>
     <build>

@@ -9,18 +9,47 @@
     <f:loadBundle var="msg" basename="/messages" />
     <ui:define name="content">
         <h:form id="form">
-            <p:commandButton icon="fa fa-plus-square-o" value="#{msg.category_new}" action="#{categoryController.categoryNewCommand}">
-                <p:ajax event="dialogReturn" listener="#{categoryController.onCloseDialog}" update="form:dt-categories" />
+            <p:commandButton 
+                icon="fa fa-plus-square-o" 
+                value="#{msg.category_new}" 
+                action="#{categoryController.categoryNewCommand}">
+                <p:ajax event="dialogReturn"   update=":form:dt-categories" />
             </p:commandButton>
             <div class="card">
-                <p:dataTable id="dt-categories" var="category" value="#{categoryController.categoriesList}" stripedRows="true">
+                <p:dataTable  id="dt-categories" 
+                              rowKey="#{category.id}"
+                              var="category" 
+                              value="#{categoryController.categoriesList}" 
+                              stripedRows="true"
+                              selectionMode="single" 
+                              paginator="true" 
+                              rows="5">
                     <p:column headerText="#{msg.category_id}">
                         #{category.id}
                     </p:column>
                     <p:column headerText="#{msg.category_id}">
                         #{category.name}
                     </p:column>
+                    <p:column>
+                        <p:commandButton 
+                            icon="fa fa-pencil-square-o"
+                            action="#{categoryController.categoryEditCommand(category.id)}" >
+                            <p:ajax event="dialogReturn"   update="form:dt-categories" />
+                        </p:commandButton>
+                        <p:commandButton  
+                            icon="fa fa-trash-o"
+                            action="#{categoryController.categoryDeleteCommand(category.id)}" >
+                            <p:confirm  header="Borrar registro" message="¿Desea borrar este registro?" ></p:confirm>
+                        </p:commandButton>
+                    </p:column>
                 </p:dataTable>
+                <p:confirmDialog global="true" >
+                    <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no ui-button-flat"/>
+                    <p:commandButton   value="Sí" type="button" styleClass="ui-confirmdialog-yes" >
+                        <f:ajax render=":form:dt-categories" />
+                    </p:commandButton>
+
+                </p:confirmDialog>
             </div>
         </h:form>
     </ui:define>

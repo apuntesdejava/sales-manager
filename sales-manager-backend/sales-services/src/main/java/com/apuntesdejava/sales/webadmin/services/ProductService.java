@@ -1,5 +1,5 @@
 /*
- * Copyright 2021 Diego Silva <diego.silva at apuntesdejava.com>.
+ * Copyright 2021 diego.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,38 +15,31 @@
  */
 package com.apuntesdejava.sales.webadmin.services;
 
+import com.apuntesdejava.sales.model.Category;
+import com.apuntesdejava.sales.model.Product;
 import com.apuntesdejava.sales.webadmin.repositories.AbstractRepository;
+import com.apuntesdejava.sales.webadmin.repositories.ProductRepository;
 import java.util.List;
 import java.util.Optional;
+import javax.ejb.Stateless;
+import javax.inject.Inject;
 
 /**
  *
- * @author Diego Silva <diego.silva at apuntesdejava.com>
- * @param <K> Key class
- * @param <E> Entity class
+ * @author diego
  */
-public abstract class AbstractService<K, E> {
+@Stateless
+public class ProductService extends AbstractService<Long, Product> {
 
-    protected abstract AbstractRepository<K, E> getRepository();
+    @Inject
+    private ProductRepository repository;
 
-    public List<E> listAll() {
-        return getRepository().listAll();
+    @Override
+    protected AbstractRepository<Long, Product> getRepository() {
+        return repository;
     }
 
-    public E create(E model) {
-        return getRepository().persist(model);
+    public List<Product> listByCategory(Category category) {
+        return repository.listByCategory(Optional.ofNullable(category));
     }
-
-    public boolean deleteById(K key) {
-        return getRepository().deleteById(key);
-    }
-
-    public Optional<E> findById(K key) {
-        return getRepository().findById(key);
-    }
-
-    public Optional<E> update(K key, E model) {
-        return getRepository().update(key, model);
-    }
-
 }

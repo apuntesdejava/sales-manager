@@ -22,6 +22,7 @@ import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import javax.ejb.EJB;
 import org.primefaces.PrimeFaces;
 
@@ -38,10 +39,20 @@ public class CategoryController implements Serializable {
 
     private Category categoryCurrent;
 
+    private List<Category> categoriesSelected;
+
     /**
      * Creates a new instance of CategoryController
      */
     public CategoryController() {
+    }
+
+    public List<Category> getCategoriesSelected() {
+        return categoriesSelected;
+    }
+
+    public void setCategoriesSelected(List<Category> categoriesSelected) {
+        this.categoriesSelected = categoriesSelected;
     }
 
     public List<Category> getCategoriesList() {
@@ -55,22 +66,34 @@ public class CategoryController implements Serializable {
     public void setCategoryCurrent(Category categoryCurrent) {
         this.categoryCurrent = categoryCurrent;
     }
-    
-    public void onCloseDialog(){
-        
-    }
 
     public void categoryNewCommand() {
         categoryCurrent = new Category();
         PrimeFaces.current().dialog().openDynamic("/categories/form", Map.of("modal", true), null);
     }
 
+    public void categoryDeleteCommand(Long id) {
+        service.deleteById(id);
+    }
+
+    public void categoryEditCommand(Long id) {
+        Optional<Category> opt = service.findById(id);
+        if (opt.isPresent()) {
+            categoryCurrent = opt.get();
+            PrimeFaces.current().dialog().openDynamic("/categories/form", Map.of("modal", true), null);
+        }
+    }
+
     public void save() {
         if (categoryCurrent.getId() == 0) {
             var model = service.create(categoryCurrent);
             PrimeFaces.current().dialog().closeDynamic(model);
+        } else {
+            var model = service.update(categoryCurrent.getId(), categoryCurrent);
+            PrimeFaces.current().dialog().closeDynamic(model);
+
         }
-        
+
     }
 
 }

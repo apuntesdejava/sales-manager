@@ -13,24 +13,26 @@
         <maven.compiler.target>11</maven.compiler.target>
     </properties>
     <dependencies>
+        <!-- dependencias mínimas necesarias para que se compile un módulo ejb -->
         <dependency>
-            <groupId>jakarta.platform</groupId>
-            <artifactId>jakarta.jakartaee-api</artifactId>
-            <version>8.0.0</version>
+            <groupId>jakarta.ejb</groupId>
+            <artifactId>jakarta.ejb-api</artifactId>
+            <version>3.2.6</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>com.apuntesdejava.sales.entities</groupId>
-            <artifactId>sales-entities</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <groupId>jakarta.enterprise</groupId>
+            <artifactId>jakarta.enterprise.cdi-api</artifactId>
+            <version>2.0.2</version>
+            <scope>provided</scope>
         </dependency>
+        <!-- dependencia para poder generar el model de las entidades -->
         <dependency>
             <groupId>org.eclipse.persistence</groupId>
             <artifactId>org.eclipse.persistence.jpa.modelgen.processor</artifactId>
-            <version>3.0.0</version>
+            <version>2.7.8</version>  
             <scope>provided</scope>
         </dependency>
-
     </dependencies>
     <build>
         <plugins>

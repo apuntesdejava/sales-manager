@@ -86,4 +86,15 @@ public abstract class AbstractRepository<K, E> {
         }
         return em.createQuery(cq).getResultList();
     }
+
+    @Transactional
+    public Optional<E> update(K key, E model) {
+        EntityManager em = getEntityManager();
+        E current = em.find(clazz, key);
+        if (current != null) {
+            return Optional.ofNullable(em.merge(model));
+        }
+        return Optional.empty();
+
+    }
 }

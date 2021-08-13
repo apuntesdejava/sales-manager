@@ -18,6 +18,7 @@ package com.apuntesdejava.sales.webadmin.services;
 import com.apuntesdejava.sales.model.Category;
 import com.apuntesdejava.sales.webadmin.repositories.AbstractRepository;
 import com.apuntesdejava.sales.webadmin.repositories.CategoryRepository;
+import java.util.Optional;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
@@ -34,6 +35,11 @@ public class CategoryService extends AbstractService<Long, Category> {
     @Override
     protected AbstractRepository<Long, Category> getRepository() {
         return categoryRepository;
+    }
+
+    @Override
+    public Optional<Category> update(Long key, Category model) {
+        return categoryRepository.update(key, model);
     }
 
 }

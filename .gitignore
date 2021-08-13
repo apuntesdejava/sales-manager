@@ -20,3 +20,4 @@
 **/*.NavData
 **/payara5
 *.zip
+**/.metadata

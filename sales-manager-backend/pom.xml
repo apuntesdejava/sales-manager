@@ -6,7 +6,6 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <modules>
-        <module>sales-entities</module>
         <module>sales-webadmin</module>
         <module>sales-services</module>
     </modules>

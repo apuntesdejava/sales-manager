@@ -37,6 +37,17 @@ public class Stock implements Serializable {
     @Column(name = "last_update")
     private LocalDateTime lastUpdate;
 
+    public Stock() {
+    }
+
+    public Stock(Product product, Storehouse storehouse, double count, double price) {
+        this.product = product;
+        this.storehouse = storehouse;
+        this.count = count;
+        lastUpdate = LocalDateTime.now();
+        this.price = price;
+    }
+
     public long getId() {
         return id;
     }

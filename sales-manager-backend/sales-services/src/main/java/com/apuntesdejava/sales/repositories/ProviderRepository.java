@@ -1,5 +1,5 @@
 /*
- * Copyright 2021 Diego Silva <diego.silva at apuntesdejava.com>.
+ * Copyright 2021 diego.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,22 +13,31 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.apuntesdejava.sales.webadmin.repositories;
+package com.apuntesdejava.sales.repositories;
 
-import javax.ejb.Singleton;
-import javax.enterprise.inject.Produces;
+import com.apuntesdejava.sales.model.PersonId;
+import com.apuntesdejava.sales.model.ProviderPerson;
+import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 
 /**
  *
- * @author Diego Silva <diego.silva at apuntesdejava.com>
+ * @author diego
  */
-@Singleton
-public class JpaProvider {
+@ApplicationScoped
+public class ProviderRepository extends AbstractRepository<PersonId, ProviderPerson> {
 
-    @Produces
-    @PersistenceContext(unitName = "salesPU")
-    private static EntityManager em;
+    @Inject
+    private EntityManager em;
+    
+    public ProviderRepository(){
+        super(ProviderPerson.class);
+    }
+
+    @Override
+    protected EntityManager getEntityManager() {
+        return em;
+    }
 
 }

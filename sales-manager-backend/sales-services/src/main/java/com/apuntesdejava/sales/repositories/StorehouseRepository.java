@@ -1,5 +1,5 @@
 /*
- * Copyright 2021 Diego Silva <diego.silva at apuntesdejava.com>.
+ * Copyright 2021 diego.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,26 +13,30 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.apuntesdejava.sales.webadmin.services;
+package com.apuntesdejava.sales.repositories;
 
-import com.apuntesdejava.sales.webadmin.repositories.AbstractRepository;
-import java.util.List;
+import com.apuntesdejava.sales.model.Storehouse;
+import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
+import javax.persistence.EntityManager;
 
 /**
  *
- * @author Diego Silva <diego.silva at apuntesdejava.com>
- * @param <K> Key class
- * @param <E> Entity class
+ * @author diego
  */
-public abstract class AbstractService<K, E> {
+@ApplicationScoped
+public class StorehouseRepository extends AbstractRepository<Long, Storehouse> {
 
-    protected abstract AbstractRepository<K, E> getRepository();
+    @Inject
+    private EntityManager em;
 
-    public List<E> listAll() {
-        return getRepository().listAll();
+    public StorehouseRepository() {
+        super(Storehouse.class);
     }
 
-    public E create(E model) {
-        return getRepository().persist(model);
+    @Override
+    protected EntityManager getEntityManager() {
+        return em;
     }
+
 }

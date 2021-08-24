@@ -1,5 +1,5 @@
 /*
- * Copyright 2021 Diego Silva <diego.silva at apuntesdejava.com>.
+ * Copyright 2021 diego.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,29 +13,31 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.apuntesdejava.sales.webadmin.repositories;
+package com.apuntesdejava.sales.repositories;
 
-import com.apuntesdejava.sales.model.Category;
+import com.apuntesdejava.sales.model.CustomerPerson;
+import com.apuntesdejava.sales.model.PersonId;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 
 /**
  *
- * @author Diego Silva <diego.silva at apuntesdejava.com>
+ * @author diego
  */
 @ApplicationScoped
-public class CategoryRepository extends AbstractRepository<Long, Category> {
+public class CustomerRepository extends AbstractRepository<PersonId, CustomerPerson> {
 
     @Inject
     private EntityManager em;
 
-    public CategoryRepository() {
-        super(Category.class);
+    public CustomerRepository() {
+        super(CustomerPerson.class);
     }
 
     @Override
     protected EntityManager getEntityManager() {
         return em;
     }
+
 }

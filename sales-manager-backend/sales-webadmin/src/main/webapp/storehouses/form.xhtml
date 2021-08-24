@@ -6,17 +6,23 @@
       xmlns:p="http://primefaces.org/ui">
     <f:loadBundle var="msg" basename="/messages" />
     <h:head>
-        <title>#{msg.category_form_title}</title>
+        <title> #{msg.storehouse_form_title}</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous"/>
 
     </h:head>
     <h:body>
         <h:form>
             <p:card>
-                <p:messages />
-                <p:inputText value="#{categoryController.categoryCurrent.name}" required="true"   placeholder="#{msg.category_name}" />
+                <div class="form-group">
+                    <p:outputLabel value="#{msg.storehouse_name}" for="storehouse_name" />
+                    <p:inputText id="storehouse_name" styleClass="form-control form-control-lg" value="#{storehouseController.storehouseSelected.name}"  />
+                </div>
+                <div class="form-group">
+                    <p:outputLabel value="#{msg.storehouse_address}" for="storehouse_address" />
+                    <p:inputText id="storehouse_address" styleClass="form-control form-control-lg" value="#{storehouseController.storehouseSelected.address}"  />
+                </div>
                 <f:facet name="footer">
-                    <p:commandButton icon="fa fa-floppy-o" value="#{msg.save}" action="#{categoryController.save}" />
+                    <p:commandButton icon="fa fa-floppy-o" action="#{storehouseController.save}" value="#{msg.save}" />
                 </f:facet>
             </p:card>
         </h:form>

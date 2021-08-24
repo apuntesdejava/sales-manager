@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.apuntesdejava.sales.webadmin.repositories;
+package com.apuntesdejava.sales.repositories;
 
 import javax.persistence.EntityManager;
 import javax.persistence.criteria.CriteriaBuilder;
@@ -85,5 +85,16 @@ public abstract class AbstractRepository<K, E> {
             );
         }
         return em.createQuery(cq).getResultList();
+    }
+
+    @Transactional
+    public Optional<E> update(K key, E model) {
+        EntityManager em = getEntityManager();
+        E current = em.find(clazz, key);
+        if (current != null) {
+            return Optional.ofNullable(em.merge(model));
+        }
+        return Optional.empty();
+
     }
 }

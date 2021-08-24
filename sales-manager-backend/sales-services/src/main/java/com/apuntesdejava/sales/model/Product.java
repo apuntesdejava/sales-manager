@@ -1,6 +1,7 @@
 package com.apuntesdejava.sales.model;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,6 +9,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -34,6 +36,9 @@ public class Product implements Serializable {
     @ManyToOne
     @JoinColumn(name = "measurement_id")
     private MeasurementUnit measurementUnit;
+
+    @OneToMany(mappedBy = "product")
+    private List<Stock> stocks;
 
     public long getId() {
         return id;
@@ -73,6 +78,20 @@ public class Product implements Serializable {
 
     public void setMeasurementUnit(MeasurementUnit measurementUnit) {
         this.measurementUnit = measurementUnit;
+    }
+
+    public List<Stock> getStocks() {
+        return stocks;
+    }
+
+    public void setStocks(List<Stock> stocks) {
+        this.stocks = stocks;
+    }
+
+    public double getTotalCount() {
+        return stocks == null
+                ? 0.0
+                : stocks.stream().map(Stock::getCount).reduce(0.0, Double::sum);
     }
 
     @Override

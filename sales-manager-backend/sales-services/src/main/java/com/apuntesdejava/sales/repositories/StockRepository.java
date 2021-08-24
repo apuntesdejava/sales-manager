@@ -13,12 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.apuntesdejava.sales.webadmin.repositories;
+package com.apuntesdejava.sales.repositories;
 
-import com.apuntesdejava.sales.model.Category;
 import com.apuntesdejava.sales.model.Product;
-import com.apuntesdejava.sales.model.Product_;
-import java.util.List;
+import com.apuntesdejava.sales.model.Stock;
+import com.apuntesdejava.sales.model.Stock_;
 import java.util.Optional;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -32,13 +31,13 @@ import javax.persistence.criteria.Root;
  * @author diego
  */
 @ApplicationScoped
-public class ProductRepository extends AbstractRepository<Long, Product> {
+public class StockRepository extends AbstractRepository<Long, Stock> {
 
     @Inject
     private EntityManager em;
 
-    public ProductRepository() {
-        super(Product.class, Product_.name.getName());
+    public StockRepository() {
+        super(Stock.class);
     }
 
     @Override
@@ -46,18 +45,18 @@ public class ProductRepository extends AbstractRepository<Long, Product> {
         return em;
     }
 
-    public List<Product> listByCategory(Optional< Category> category) {
+    public Optional<Stock> findByProductPrice(Product p, double price, com.apuntesdejava.sales.model.Storehouse storeHouse) {
         CriteriaBuilder cb = em.getCriteriaBuilder();
-        CriteriaQuery<Product> query = cb.createQuery(Product.class);
-        Root<Product> product = query.from(Product.class);
-        query.select(product).orderBy(cb.asc(product.get(Product_.name)));
-        if (category.isPresent()) {
-            query.where(
-                    cb.equal(product.get(Product_.category), category.get())
-            );
-        }
-        return em.createQuery(query).getResultList();
-
+        CriteriaQuery<Stock> cq = cb.createQuery(Stock.class);
+        Root<Stock> stock = cq.from(Stock.class);
+        cq.select(stock).where(
+                cb.and(
+                        cb.equal(stock.get(Stock_.product), p),
+                        cb.equal(stock.get(Stock_.storehouse), storeHouse),
+                        cb.equal(stock.get(Stock_.price), price)
+                )
+        );
+        return em.createQuery(cq).getResultStream().findFirst();
     }
 
 }

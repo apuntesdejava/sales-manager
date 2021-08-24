@@ -16,7 +16,7 @@
 package com.apuntesdejava.sales.webadmin.view.converter;
 
 import com.apuntesdejava.sales.model.Category;
-import com.apuntesdejava.sales.webadmin.services.CategoryService;
+import com.apuntesdejava.sales.services.CategoryService;
 import java.util.Optional;
 import javax.ejb.EJB;
 import javax.faces.component.UIComponent;

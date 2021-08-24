@@ -13,33 +13,29 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.apuntesdejava.sales.webadmin.services;
+package com.apuntesdejava.sales.repositories;
 
 import com.apuntesdejava.sales.model.Category;
-import com.apuntesdejava.sales.webadmin.repositories.AbstractRepository;
-import com.apuntesdejava.sales.webadmin.repositories.CategoryRepository;
-import java.util.Optional;
-import javax.ejb.Stateless;
+import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
+import javax.persistence.EntityManager;
 
 /**
  *
  * @author Diego Silva <diego.silva at apuntesdejava.com>
  */
-@Stateless
-public class CategoryService extends AbstractService<Long, Category> {
+@ApplicationScoped
+public class CategoryRepository extends AbstractRepository<Long, Category> {
 
     @Inject
-    private CategoryRepository categoryRepository;
+    private EntityManager em;
 
-    @Override
-    protected AbstractRepository<Long, Category> getRepository() {
-        return categoryRepository;
+    public CategoryRepository() {
+        super(Category.class);
     }
 
     @Override
-    public Optional<Category> update(Long key, Category model) {
-        return categoryRepository.update(key, model);
+    protected EntityManager getEntityManager() {
+        return em;
     }
-
 }

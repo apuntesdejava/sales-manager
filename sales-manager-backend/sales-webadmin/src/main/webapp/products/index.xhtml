@@ -9,14 +9,21 @@
     <f:loadBundle var="msg" basename="/messages" />
     <ui:define name="content">
         <h:form id="form">
+            <p:commandButton action="#{productController.newProductAction}" value="#{msg.product_new}" />
+            <hr/>
             <p:selectOneMenu value="#{productController.categorySelected}"  converter="#{categoryConverter}">
                 <f:selectItems value="#{categoryController.categoriesList}" var="cat" itemLabel="#{cat.name}" itemValue="#{cat}" />
                 <f:ajax render=":form:product"/>
             </p:selectOneMenu>
 
-            <p:dataGrid value="#{productController.productsList}" var="product" id="product">
-
-            </p:dataGrid>
+            <p:dataTable value="#{productController.productsList}" var="product" id="product" rowKey="#{product.id}">
+                <p:column headerText="#{msg.product_name}">
+                    #{product.name}
+                </p:column>
+                <p:column headerText="#{msg.product_count}">
+                    #{product.totalCount}
+                </p:column>
+            </p:dataTable>
         </h:form>
     </ui:define>
 

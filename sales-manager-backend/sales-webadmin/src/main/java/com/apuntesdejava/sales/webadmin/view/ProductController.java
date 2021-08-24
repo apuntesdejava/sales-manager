@@ -17,7 +17,7 @@ package com.apuntesdejava.sales.webadmin.view;
 
 import com.apuntesdejava.sales.model.Category;
 import com.apuntesdejava.sales.model.Product;
-import com.apuntesdejava.sales.webadmin.services.ProductService;
+import com.apuntesdejava.sales.services.ProductService;
 import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;
@@ -37,6 +37,8 @@ public class ProductController implements Serializable {
 
     private Category categorySelected;
 
+    private Product currentProduct;
+
     public List<Product> getProductsList() {
         return productService.listByCategory(categorySelected);
     }
@@ -47,6 +49,20 @@ public class ProductController implements Serializable {
 
     public void setCategorySelected(Category categorySelected) {
         this.categorySelected = categorySelected;
+    }
+
+    public Product getCurrentProduct() {
+        return currentProduct;
+    }
+
+    public void setCurrentProduct(Product currentProduct) {
+        this.currentProduct = currentProduct;
+    }
+
+    public String newProductAction() {
+        currentProduct = new Product();
+        currentProduct.setCategory(categorySelected);
+        return "/products/form";
     }
 
 }

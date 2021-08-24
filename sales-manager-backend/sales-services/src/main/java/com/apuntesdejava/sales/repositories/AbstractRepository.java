@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.apuntesdejava.sales.webadmin.repositories;
+package com.apuntesdejava.sales.repositories;
 
 import javax.persistence.EntityManager;
 import javax.persistence.criteria.CriteriaBuilder;

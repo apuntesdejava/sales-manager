@@ -13,9 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.apuntesdejava.sales.webadmin.services;
+package com.apuntesdejava.sales.services;
 
-import com.apuntesdejava.sales.webadmin.repositories.AbstractRepository;
+import com.apuntesdejava.sales.repositories.AbstractRepository;
 import java.util.List;
 import java.util.Optional;
 

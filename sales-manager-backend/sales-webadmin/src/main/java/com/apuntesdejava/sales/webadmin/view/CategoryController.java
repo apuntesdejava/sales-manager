@@ -16,7 +16,7 @@
 package com.apuntesdejava.sales.webadmin.view;
 
 import com.apuntesdejava.sales.model.Category;
-import com.apuntesdejava.sales.webadmin.services.CategoryService;
+import com.apuntesdejava.sales.services.CategoryService;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;

@@ -13,12 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.apuntesdejava.sales.webadmin.services;
+package com.apuntesdejava.sales.services;
 
 import com.apuntesdejava.sales.model.Category;
 import com.apuntesdejava.sales.model.Product;
-import com.apuntesdejava.sales.webadmin.repositories.AbstractRepository;
-import com.apuntesdejava.sales.webadmin.repositories.ProductRepository;
+import com.apuntesdejava.sales.repositories.ProductRepository;
 import java.util.List;
 import java.util.Optional;
 import javax.ejb.Stateless;
@@ -35,7 +34,7 @@ public class ProductService extends AbstractService<Long, Product> {
     private ProductRepository repository;
 
     @Override
-    protected AbstractRepository<Long, Product> getRepository() {
+    protected ProductRepository getRepository() {
         return repository;
     }
 

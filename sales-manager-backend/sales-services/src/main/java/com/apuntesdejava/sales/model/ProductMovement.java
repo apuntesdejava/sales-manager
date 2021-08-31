@@ -15,7 +15,7 @@
  */
 package com.apuntesdejava.sales.model;
 
-import com.apuntesdejava.sales.model.type.ProductTypeMovement;
+import com.apuntesdejava.sales.model.type.ProductMovementType;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import javax.persistence.Column;
@@ -54,7 +54,7 @@ public class ProductMovement implements Serializable {
 
     @Column(name = "type_movement")
     @Enumerated(value = EnumType.STRING)
-    private ProductTypeMovement type;
+    private ProductMovementType type;
 
     @Column(name = "unit_price")
     private double unitPrice;
@@ -69,7 +69,7 @@ public class ProductMovement implements Serializable {
     public ProductMovement() {
     }
 
-    public ProductMovement(Product product, double count, ProductTypeMovement type, double unitPrice, Storehouse storeHouse, String comment) {
+    public ProductMovement(Product product, double count, ProductMovementType type, double unitPrice, Storehouse storeHouse, String comment) {
         this.product = product;
         this.count = count;
         this.type = type;
@@ -111,11 +111,11 @@ public class ProductMovement implements Serializable {
         this.count = count;
     }
 
-    public ProductTypeMovement getType() {
+    public ProductMovementType getType() {
         return type;
     }
 
-    public void setType(ProductTypeMovement type) {
+    public void setType(ProductMovementType type) {
         this.type = type;
     }
 

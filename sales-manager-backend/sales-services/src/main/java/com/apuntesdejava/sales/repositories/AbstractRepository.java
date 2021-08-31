@@ -67,6 +67,7 @@ public abstract class AbstractRepository<K, E> {
         Optional<E> model = findById(id);
         if (model.isPresent()) {
             getEntityManager().remove(model.get());
+            return true;
         }
         return false;
     }

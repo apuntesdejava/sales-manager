@@ -15,8 +15,8 @@
  */
 package com.apuntesdejava.sales.webadmin.view.converter;
 
-import com.apuntesdejava.sales.model.Category;
-import com.apuntesdejava.sales.services.CategoryService;
+import com.apuntesdejava.sales.model.Storehouse;
+import com.apuntesdejava.sales.services.StorehouseService;
 import java.util.Optional;
 import javax.ejb.EJB;
 import javax.faces.component.UIComponent;
@@ -32,27 +32,27 @@ import org.apache.commons.lang3.math.NumberUtils;
  * @author diego
  */
 @Named
-@FacesConverter(value = "categoryConverter", managed = true)
-public class CategoryConverter implements Converter<Category> {
+@FacesConverter(value = "storehouseConverter", managed = true)
+public class StorehouseConverter implements Converter<Storehouse> {
 
     @EJB
-    private CategoryService service;
+    private StorehouseService service;
 
     @Override
-    public Category getAsObject(FacesContext context, UIComponent component, String value) {
+    public Storehouse getAsObject(FacesContext context, UIComponent component, String value) {
         if (StringUtils.isBlank(value)) {
             return null;
         }
-        Optional<Category> category = service.findById(NumberUtils.toLong(value));
-        if (category.isEmpty()) {
-            return null;
-        }
-        return category.get();
+        Optional<Storehouse> store = service.findById(NumberUtils.toLong(value));
+        return store.isPresent() ? store.get() : null;
     }
 
     @Override
-    public String getAsString(FacesContext context, UIComponent component, Category value) {
-        return value == null ? null : String.valueOf(value.getId());
+    public String getAsString(FacesContext context, UIComponent component, Storehouse value) {
+        if (value == null) {
+            return null;
+        }
+        return String.valueOf(value.getId());
     }
 
 }

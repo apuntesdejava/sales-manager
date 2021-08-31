@@ -15,8 +15,8 @@
  */
 package com.apuntesdejava.sales.webadmin.view.converter;
 
-import com.apuntesdejava.sales.model.Category;
-import com.apuntesdejava.sales.services.CategoryService;
+import com.apuntesdejava.sales.model.MeasurementUnit;
+import com.apuntesdejava.sales.services.MeasurementUnitService;
 import java.util.Optional;
 import javax.ejb.EJB;
 import javax.faces.component.UIComponent;
@@ -25,34 +25,33 @@ import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 import javax.inject.Named;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.math.NumberUtils;
 
 /**
  *
  * @author diego
  */
 @Named
-@FacesConverter(value = "categoryConverter", managed = true)
-public class CategoryConverter implements Converter<Category> {
+@FacesConverter(value = "measurementUnitConverter", managed = true)
+public class MeasurementUnitConverter implements Converter<MeasurementUnit> {
 
     @EJB
-    private CategoryService service;
+    private MeasurementUnitService service;
 
     @Override
-    public Category getAsObject(FacesContext context, UIComponent component, String value) {
+    public MeasurementUnit getAsObject(FacesContext context, UIComponent component, String value) {
         if (StringUtils.isBlank(value)) {
             return null;
         }
-        Optional<Category> category = service.findById(NumberUtils.toLong(value));
-        if (category.isEmpty()) {
+        Optional<MeasurementUnit> measurement = service.findById(value);
+        if (measurement.isEmpty()) {
             return null;
         }
-        return category.get();
+        return measurement.get();
     }
 
     @Override
-    public String getAsString(FacesContext context, UIComponent component, Category value) {
-        return value == null ? null : String.valueOf(value.getId());
+    public String getAsString(FacesContext context, UIComponent component, MeasurementUnit value) {
+        return value == null ? null : value.getMeasurementId();
     }
 
 }

@@ -39,8 +39,10 @@ public class ProductController implements Serializable {
 
     private Product currentProduct;
 
+
     public List<Product> getProductsList() {
-        return productService.listByCategory(categorySelected);
+        var products = productService.listByCategory(categorySelected);
+        return products;
     }
 
     public Category getCategorySelected() {
@@ -65,4 +67,13 @@ public class ProductController implements Serializable {
         return "/products/form";
     }
 
+
+    public String save() {
+        if (currentProduct.getId() == 0) {
+            productService.create(currentProduct);
+        }
+        return "/products/index";
+    }
+
+   
 }

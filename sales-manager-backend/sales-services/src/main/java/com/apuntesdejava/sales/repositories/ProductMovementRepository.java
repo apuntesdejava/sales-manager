@@ -45,7 +45,7 @@ public class ProductMovementRepository extends AbstractRepository<Long, ProductM
         return em;
     }
 
-    public List<ProductMovement> findByProduct(Product p) {
+    public List<ProductMovement> listByProduct(Product p) {
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<ProductMovement> cq = cb.createQuery(ProductMovement.class);
         Root<ProductMovement> model = cq.from(ProductMovement.class);

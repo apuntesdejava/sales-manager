@@ -25,6 +25,7 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import static javax.persistence.criteria.JoinType.LEFT;
 import javax.persistence.criteria.Root;
 
 /**
@@ -50,12 +51,16 @@ public class ProductRepository extends AbstractRepository<Long, Product> {
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<Product> query = cb.createQuery(Product.class);
         Root<Product> product = query.from(Product.class);
-        query.select(product).orderBy(cb.asc(product.get(Product_.name)));
+        query.select(product)
+                .orderBy(cb.asc(product.get(Product_.name)));
         if (category.isPresent()) {
             query.where(
                     cb.equal(product.get(Product_.category), category.get())
             );
         }
+        product.fetch(Product_.category, LEFT);
+        product.fetch(Product_.measurementUnit, LEFT);
+        product.fetch(Product_.stocks, LEFT);
         return em.createQuery(query).getResultList();
 
     }

@@ -19,10 +19,11 @@ import com.apuntesdejava.sales.model.Product;
 import com.apuntesdejava.sales.model.ProductMovement;
 import com.apuntesdejava.sales.model.Stock;
 import com.apuntesdejava.sales.model.Storehouse;
-import com.apuntesdejava.sales.model.type.ProductTypeMovement;
+import com.apuntesdejava.sales.model.type.ProductMovementType;
 import com.apuntesdejava.sales.repositories.ProductMovementRepository;
 import com.apuntesdejava.sales.repositories.StockRepository;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -45,12 +46,12 @@ public class ProductMovementService extends AbstractService<Long, ProductMovemen
         return repository;
     }
 
-    public ProductMovement create(Product product, double count, ProductTypeMovement type, double unitPrice, Storehouse storeHouse,String comment) {
+    public ProductMovement create(Product product, double count, ProductMovementType type, double unitPrice, Storehouse storeHouse, String comment) {
         ProductMovement movement = repository.persist(new ProductMovement(product, count, type, unitPrice, storeHouse, comment));
         Optional<Stock> stockOpt = stockRepository.findByProductPrice(product, unitPrice, storeHouse);
         if (stockOpt.isPresent()) {
             Stock stock = stockOpt.get();
-            stock.setCount(stock.getCount() + (count * (type == ProductTypeMovement.INCOMING ? 1 : -1)));
+            stock.setCount(stock.getCount() + (count * (type == ProductMovementType.INCOMING ? 1 : -1)));
             stock.setLastUpdate(LocalDateTime.now());
             stock.setPrice(unitPrice);
             stockRepository.update(stock.getId(), stock);
@@ -58,6 +59,10 @@ public class ProductMovementService extends AbstractService<Long, ProductMovemen
             stockRepository.persist(new Stock(product, storeHouse, count, unitPrice));
         }
         return movement;
+    }
+
+    public List<ProductMovement> listByProduct(Product p) {
+        return repository.listByProduct(p);
     }
 
 }
